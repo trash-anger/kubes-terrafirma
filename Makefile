@@ -23,6 +23,10 @@ show-%:
 	@echo "+++ Running terraform apply for $(environment)"
 	$(terraform) show $(environment).tfstate
 
+output-%: 
+	@echo "+++ Running terraform output for $(environment)"
+	$(terraform) output $(environment).tfstate
+
 destroy-%: 
 	@echo "+++ Running terraform apply for $(environment)"
 	$(terraform) destroy -var-file global.tfvars -var-file=$(environment).tfvars -state=$(environment).tfstate kluster

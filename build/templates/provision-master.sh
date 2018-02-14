@@ -11,9 +11,9 @@ then
 fi
 
 # install cfssl for etcd client/peer certs
-curl -sL -o /usr/local/bin/cfssl https://pkg.cfssl.org/R1.2/cfssl_linux-amd64
-curl -sL -o /usr/local/bin/cfssljson https://pkg.cfssl.org/R1.2/cfssljson_linux-amd64
-chmod 755 /usr/local/bin/cfssl /usr/local/bin/cfssljson
+#curl -sL -o /usr/local/bin/cfssl https://pkg.cfssl.org/R1.2/cfssl_linux-amd64
+#curl -sL -o /usr/local/bin/cfssljson https://pkg.cfssl.org/R1.2/cfssljson_linux-amd64
+#chmod 755 /usr/local/bin/cfssl /usr/local/bin/cfssljson
 
 # hack for adfs access :(
 #echo "203.34.100.136	adfs.myob.com.au" >> /etc/hosts

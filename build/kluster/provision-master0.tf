@@ -1,16 +1,16 @@
-"resource" "null_resource" "cluster-masters" {
-  "count" = "${var.k8s_master_count - 1}"
+"resource" "null_resource" "cluster-master0" {
+
   "connection" = {
     "host" = "${vsphere_virtual_machine.kubemastervm.0.network_interface.0.ipv4_address}"
     "user" = "root"
     "password" = "${var.k8s_root_password}"
   }
 
-  "depends_on" = ["null_resource.cluster-master0"]
+  "depends_on" = ["vsphere_virtual_machine.kubemastervm"]
 
   "provisioner" "remote-exec" {
     "inline" = [
-			"hostnamectl set-hostname ${var.k8s_cluster_name}-${var.k8s_cluster_environment}-master${count.index + 1}"
+			"hostnamectl set-hostname ${var.k8s_cluster_name}-${var.k8s_cluster_environment}-master0"
     ]
   }
 
@@ -65,12 +65,12 @@
   }
 
   "provisioner" "file" {
-    "content" = "${element(data.template_file.kubeadmcfg.*.rendered, count.index+1)}"
+    "content" = "${data.template_file.kubeadmcfg.0.rendered}"
     "destination" = "/etc/kubernetes/kubeadm.yaml"
   }
 
 #  "provisioner" "file" {
-#    "content" = "${element(data.template_file.etcdmanifest.*.rendered, count.index+1)}"
+#    "content" = "${data.template_file.etcdmanifest.0.rendered}"
 #    "destination" = "/etc/kubernetes/manifests/etcd.yaml"
 #  }
 
