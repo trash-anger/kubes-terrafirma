@@ -64,6 +64,12 @@ variable "vsphere_folderpath" {
   description = "vsphere folder path to locate vms"
 }
 
+variable "etcd_version" {
+  type        = "string"
+  description = "version of etcd to use"
+  default = "v3.1.10"
+}
+
 variable "k8s_version" {
   type        = "string"
   description = "version of kubernetes hyperkube to use"

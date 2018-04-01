@@ -8,11 +8,11 @@
     "password" = "${var.k8s_root_password}"
   }
 
-  "depends_on" = ["null_resource.cluster-master0"]
+  "depends_on" = ["null_resource.cluster-init"]
 
   "provisioner" "remote-exec" {
     "inline" = [
-			"hostnamectl set-hostname ${var.k8s_cluster_name}-${var.k8s_cluster_environment}-node${count.index}",
+      "hostnamectl set-hostname ${var.k8s_cluster_name}-${var.k8s_cluster_environment}-node${count.index}",
       "mkdir -p /etc/kubernetes/pki"
     ]
   }

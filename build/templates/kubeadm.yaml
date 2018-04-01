@@ -14,6 +14,7 @@ apiServerExtraArgs:
   oidc-username-claim: ${k8s_oidc_username_claim}
   oidc-groups-claim: ${k8s_oidc_groups_claim}
   endpoint-reconciler-type: lease
+  requestheader-allowed-names:
 etcd:
   endpoints:
   - https://${k8s_master_ip0}:2379
