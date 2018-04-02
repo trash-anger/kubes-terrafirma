@@ -24,7 +24,7 @@ PRIVATE_IP=$(ip addr show eth0 | grep -Po 'inet \K[\d.]+')
 # install etcd
 cwd=`pwd`
 cd /tmp
-curl -sSL https://github.com/coreos/etcd/releases/download/${etcd_version}/etcd-${etcd_version}-linux-amd64.tar.gz | tar -xzv --strip-components=1 -C /usr/local/bin/
+curl -sSL https://github.com/coreos/etcd/releases/download/${etcd_version}/etcd-${etcd_version}-linux-amd64.tar.gz | tar -xz --strip-components=1 -C /usr/local/bin/
 rm -rf etcd-${etcd_version}-linux-amd64*
 cd $cwd
 mkdir -p /var/lib/etcd

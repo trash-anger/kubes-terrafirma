@@ -56,6 +56,7 @@ do
       echo label node $NODE_NAME as worker
       echo kubectl label node "role=worker" -l "kubernetes.io/hostname=${NODE_NAME}" --overwrite=true
       kubectl label node "role=worker" -l "kubernetes.io/hostname=${NODE_NAME}" --overwrite=true
+      kubectl label node ${NODE_NAME} node-role.kubernetes.io/node="" --overwrite=true
       ;;
   esac
 

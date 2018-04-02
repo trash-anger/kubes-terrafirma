@@ -54,6 +54,19 @@ genEtcd() {
   cd $cwd
 }
 
+genServiceAccount() {
+  echo "generate service account token keypair for $environment"
+  [[ ! -d ./build/tls/${environment} ]] && mkdir ./build/tls/${environment}
+  cwd=`pwd`
+  cd ./build/tls/${environment}
+  openssl genrsa -out sa-key.pem 2048
+  checkrc $?
+  openssl rsa -in sa-key.pem -pubout -out sa.pem
+  checkrc $?
+  cd $cwd
+}
+
+
 main() {
 
   echo "cwd: `pwd`"
@@ -66,6 +79,7 @@ main() {
   [[ ! -f ./build/tls/${environment}/ca-key.pem ]] && genCA
   [[ ! -f ./build/tls/${environment}/admin-key.pem ]] && genAdmin
   [[ ! -f ./build/tls/${environment}/etcd-key.pem ]] && genEtcd
+  [[ ! -f ./build/tls/${environment}/sa.pem ]] && genServiceAccount
 
 }
 

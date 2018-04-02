@@ -3,11 +3,13 @@ kind: MasterConfiguration
 kubernetesVersion: ${k8s_version}
 cloudProvider: vsphere
 api:
-  advertiseAddress: ${k8s_master_ip}
+  advertiseAddress: ${k8s_master_ip0}
 apiServerCertSANs:
+  - ${k8s_master_lb_ip}
   - ${k8s_master_ip0}
   - ${k8s_master_ip1}
   - ${k8s_master_ip2}
+  - ${k8s_master_lb_hostname}
 apiServerExtraArgs:
   oidc-issuer-url: ${k8s_oidc_issuer_url}
   oidc-client-id: ${k8s_oidc_client_id}

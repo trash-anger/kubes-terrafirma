@@ -92,6 +92,16 @@ variable "k8s_cluster_environment" {
   description = "name of the k8s cluster environment"
 }
 
+variable "k8s_master_lb_ip" {
+  type        = "string"
+  description = "k8s api load balancer virtual ip address"
+}
+
+variable "k8s_master_lb_hostname" {
+	type        = "string"
+	description = "k8s api load balancer fqdn"
+}
+
 variable "k8s_master_count" {
   description = "number of k8s masters to provision"
   default = 3

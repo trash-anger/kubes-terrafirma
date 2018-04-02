@@ -37,6 +37,16 @@
   }
 
   "provisioner" "file" {
+    "source" = "tls/${var.k8s_cluster_environment}/sa-key.pem"
+    "destination" = "/etc/kubernetes/pki/sa.key"
+  }
+
+  "provisioner" "file" {
+    "source" = "tls/${var.k8s_cluster_environment}/sa.pem"
+    "destination" = "/etc/kubernetes/pki/sa.pub"
+  }
+
+  "provisioner" "file" {
     "source" = "tls/ca-config.json"
     "destination" = "/etc/kubernetes/pki/ca-config.json"
   }
