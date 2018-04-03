@@ -27,10 +27,10 @@ It uses terraform and kubeadm.
   vi build/global.tfvars  build/<environment name>.tfvars
   ```
 
-* generate ca cert and cluster admin cert
+* generate ca cert and other common keys/certs
 
   ```
-  make ca-<environment name> clustername=<cluster name that matches terraform variable k8s_cluster_name>
+  make certs-<environment name>
   ```
 
 * set some sensitive info as environment variables for terraform to pickup
