@@ -2,13 +2,13 @@
 
 ## vsphere + terraform + kubeadm == kubes-terrafirma
 
-A project to assist in provisioning kubernetes on vsphere.
+Un projet pour aider à provisionner un cluster kubernetes sur vsphere.
 
-It uses terraform and kubeadm.
+Ca utilise terraform et kubeadm
 
-## How?
+## Comment?
 
-* install docker and docker-compose locally
+* installer docker et docker-compose locallement
 
 * build an esx template vm with docker, kubeadm, kubectl and kubelet installed. See [vm-base](vm-base.md) for CentOS 7 setup notes.
 
