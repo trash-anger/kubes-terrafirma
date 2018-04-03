@@ -1,7 +1,7 @@
 #!/bin/bash
 
 environment=$1
-traefik_hostname=traefik.terra.platform.dev.myob.com
+traefik_hostname=traefik.svcs.terra.platform.myobdev.com
 
 if [ -z "${environment}" ]
 then
@@ -13,11 +13,12 @@ fi
 case $environment in
   dev*)
     environment="development"
-    traefik_hostname="traefik.terra.platform.dev.myob.com"
+    traefik_hostname="traefik.svcs.terra.platform.myobdev.com"
     ;;
   prod*)
     environment="development"
     traefik_hostname="traefik.terra.platform.myob.com"
+    traefik_hostname="traefik.svcs.terra.platform.myob.com"
     ;;
   *)
     echo "invalid environment provided: $environment"
@@ -126,7 +127,7 @@ EOF
 
 helm init --upgrade --tiller-namespace default --service-account tiller
 
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.8.2/src/deploy/recommended/kubernetes-dashboard.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.8.3/src/deploy/recommended/kubernetes-dashboard.yaml
 
 cat <<EOF | kubectl apply -f -
 ---
