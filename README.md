@@ -4,22 +4,22 @@
 
 Un projet pour aider à provisionner un cluster kubernetes sur vsphere.
 
-Ca utilise terraform et kubeadm
+ça utilise terraform et kubeadm
 
 ## Comment?
 
 * installer docker et docker-compose locallement
 
-* build an esx template vm with docker, kubeadm, kubectl and kubelet installed. See [vm-base](vm-base.md) for CentOS 7 setup notes.
+* construire un template de vm esxi avec docker, kubeadm, kubectl et kubelet  d'installés. Voir : configuration [vm-de-base](vm-base.md) pour CentOS 7.
 
-* generate a kubeadm bootstrap token for nodes
+* générer un jeton kubeadm pour les nœuds avec la commande :
 
   ```
   make token
   ```
-  save the resulting token for the `k8s_bootstrap_token` input variable
+  Enregistrer les jetons résultant pour la variable d'entrée `k8s_bootstrap_token`
 
-* update terraform input variables 
+* mettre à jour les variables d'entrées terraform : 
 
   ```
   cp build/global.tfvars.example build/global.tfvars
@@ -27,13 +27,13 @@ Ca utilise terraform et kubeadm
   vi build/global.tfvars  build/<environment name>.tfvars
   ```
 
-* generate ca cert and cluster admin cert
+* Générer un certificat "ca" et "admin cert"
 
   ```
   make ca-<environment name> clustername=<cluster name that matches terraform variable k8s_cluster_name>
   ```
-
-* set some sensitive info as environment variables for terraform to pickup
+  
+* reseigner quelques infos sensibles en variables d'environement pour que terraform puisse les récupérer : 
 
   ```
   TF_VAR_k8s_root_password="SuperSecretSquirrelRootPassword"
@@ -42,19 +42,19 @@ Ca utilise terraform et kubeadm
   export TF_VAR_k8s_root_password TF_VAR_vsphere_password
   ```
 
-* see if the terraform gods are smiling
+* Regarder si la chance est avec nous :
 
   ```
   make plan-<environment name>
   ```
 
-* build a k8s cluster
+* Construire un cluster k8s (k8s = kebernetes) 
 
   ```
   make apply-<environment name>
   ```
 
-* destroy a k8s cluster
+* détruire le cluster k8s
 
   ```
   make destroy-<environment name>
