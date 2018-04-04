@@ -48,7 +48,10 @@ kubectl --version
 setenforce 0
 ```
 ```
-systemctl enable kubelet cat <<EOF >  /etc/sysctl.d/k8s.conf
+systemctl enable kubelet 
+```
+```
+cat <<EOF >  /etc/sysctl.d/k8s.conf
 net.bridge.bridge-nf-call-ip6tables = 1
 net.bridge.bridge-nf-call-iptables = 1
 EOF
